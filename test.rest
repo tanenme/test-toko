@@ -1,0 +1,89 @@
+POST http://127.0.0.1:3000/signup
+Content-Type: application/json
+
+{
+    "username": "rootroot",
+    "password": "inioasasd"
+}
+
+####
+POST http://127.0.0.1:3000/signin
+Content-Type: application/json
+
+{
+    "username": "rootroot",
+    "password": "inioasasd"
+}
+
+###########################BARANG#########################
+
+###
+POST http://127.0.0.1:3000/barang/add
+Content-Type: application/json
+Authorization: "c2fc510f-cd46-460a-8f8d-ac33ce700c20"
+
+{
+    "nama_barang": "honda",
+    "harga_beli": 2000000,
+    "harga_jual": 3000000,
+    "stok": 50
+}
+
+###
+GET http://127.0.0.1:3000/barang/find
+Authorization: "c2fc510f-cd46-460a-8f8d-ac33ce700c20"
+
+
+###
+PATCH http://127.0.0.1:3000/barang/update
+Content-Type: application/json
+Authorization: "c2fc510f-cd46-460a-8f8d-ac33ce700c20"
+
+
+{
+    "id_barang": 10,
+    "update": {
+        "nama_barang": "inibarang",
+        "stok": 200
+    }
+}
+
+###
+DELETE http://127.0.0.1:3000/barang/delete
+Content-Type: application/json
+Authorization: "c2fc510f-cd46-460a-8f8d-ac33ce700c20"
+
+
+{
+    "id_barang": 10
+}
+
+######################PENJUALAN###################
+
+###
+POST  http://127.0.0.1:3000/penjualan/jual
+Content-Type: application/json
+Authorization: "c2fc510f-cd46-460a-8f8d-ac33ce700c20"
+
+
+{
+    "id_barang": 3,
+    "jumlah": 5
+}
+
+
+
+########################LAPORAN###############
+###
+GET http://127.0.0.1:3000/laporanterlaris
+Authorization: "c2fc510f-cd46-460a-8f8d-ac33ce700c20"
+
+###
+GET http://127.0.0.1:3000/laporanmenguntungkan
+Authorization: "c2fc510f-cd46-460a-8f8d-ac33ce700c20"
+
+###
+GET http://127.0.0.1:3000/laporanpenjualanuntung
+Authorization: "c2fc510f-cd46-460a-8f8d-ac33ce700c20"
+
+
