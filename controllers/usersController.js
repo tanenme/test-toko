@@ -2,9 +2,9 @@ import Users from "../models/usersModel.js";
 import bcrypt from "bcrypt";
 import { userSchema } from "../validate/userValidateSchema.js";
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config({ path: './.env' });
 
-
-const secret = 'secretme'
 
 
 export const signup = async (req, res) => {
@@ -76,21 +76,13 @@ export const signin = async (req, res) => {
         }
 
         const payload = {
-            username: user.username,
-            iat: Date.now() / 1000, 
-            exp: Date.now() / 1000 + (60 * 60)
+            username: username
         }
+
+        const secret =  process.env.SECRET_KEY
         
-        const token = 'Bearer ' + jwt.sign(payload, secret, { algorithm: 'HS256' });
+        const token = 'Bearer ' + jwt.sign( payload, secret, { expiresIn: '1h' });
 
-
-        await Users.update(
-            { token: token }, {
-                 where: {
-                     username: req.body.username
-                 }
-            }
-         )
          res.status(200).json({
             success: true,
             msg: {
