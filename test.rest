@@ -2,7 +2,7 @@ POST http://127.0.0.1:3000/signup
 Content-Type: application/json
 
 {
-    "username": "rootroot",
+    "username": "adminiini",
     "password": "inioasasd"
 }
 
@@ -11,7 +11,7 @@ POST http://127.0.0.1:3000/signin
 Content-Type: application/json
 
 {
-    "username": "rootroot",
+    "username": "adminiini",
     "password": "inioasasd"
 }
 
@@ -31,7 +31,7 @@ Authorization: "c2fc510f-cd46-460a-8f8d-ac33ce700c20"
 
 ###
 GET http://127.0.0.1:3000/barang/find
-Authorization: "c2fc510f-cd46-460a-8f8d-ac33ce700c20"
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluaWluaSIsImlhdCI6MTczMjE2MzA1MiwiZXhwIjoxNzMyMTY2NjUyfQ.Q21OCpWThu6FUccG-MlWYhidqwt6vCITPO4r3pIKtME
 
 
 ###
@@ -76,14 +76,15 @@ Authorization: "c2fc510f-cd46-460a-8f8d-ac33ce700c20"
 ########################LAPORAN###############
 ###
 GET http://127.0.0.1:3000/laporanterlaris
-Authorization: "c2fc510f-cd46-460a-8f8d-ac33ce700c20"
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluaWluaSIsImlhdCI6MTczMjE2MzA1MiwiZXhwIjoxNzMyMTY2NjUyfQ.Q21OCpWThu6FUccG-MlWYhidqwt6vCITPO4r3pIKtME
 
 ###
-GET http://127.0.0.1:3000/laporanmenguntungkan
-Authorization: "c2fc510f-cd46-460a-8f8d-ac33ce700c20"
+GET http://127.0.0.1:3000/laporanbarangmenguntungkan
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluaWluaSIsImlhdCI6MTczMjE2MzA1MiwiZXhwIjoxNzMyMTY2NjUyfQ.Q21OCpWThu6FUccG-MlWYhidqwt6vCITPO4r3pIKtME
 
 ###
 GET http://127.0.0.1:3000/laporanpenjualanuntung
-Authorization: "c2fc510f-cd46-460a-8f8d-ac33ce700c20"
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluaWluaSIsImlhdCI6MTczMjE2MzA1MiwiZXhwIjoxNzMyMTY2NjUyfQ.Q21OCpWThu6FUccG-MlWYhidqwt6vCITPO4r3pIKtME
+
 
 
