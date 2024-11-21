@@ -1,9 +1,9 @@
 import { Sequelize } from "sequelize";
+import dotenv from 'dotenv'
+dotenv.config({path: './.env'})
 
-const db = new Sequelize('test', 'postgres', 'toor', {
-    host: '127.0.0.1',
-    dialect: 'postgres'
-})
+
+const db = new Sequelize(process.env.db)
 
 // try {
 //     await db.authenticate()
