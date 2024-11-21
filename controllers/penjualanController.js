@@ -1,8 +1,7 @@
 import Penjualan from "../models/penjualanModels.js";
 import Barang from "../models/barangModels.js";
-import { Sequelize} from "sequelize";
 import { penjualanSchema } from "../validate/penjualanValidateSchema.js";
-import client from "../src/pg.js";
+import db from "../src/connection.js";
 
 export const inputPenjualan = async (req, res) => {
 
@@ -64,24 +63,23 @@ export const inputPenjualan = async (req, res) => {
 export const laporanTerlaris = async (req,res) => {
     try {
 
-      //SELECT "penjualan"."id_barang", sum("jumlah") AS "total_terjual", "barang"."id_barang" AS "barang.id_barang", "barang"."nama_barang" AS "barang.nama_barang" FROM "penjualan" AS "penjualan" LEFT OUTER JOIN "barang" AS "barang" ON "penjualan"."id_barang" = "barang"."id_barang" GROUP BY "id_barang" ORDER BY total_terjual DESC LIMIT 5;
-
-        const result =  await client.query(`
-        SELECT 
-          p.id_barang, 
-          b.nama_barang,
-          SUM(p.jumlah) AS total_penjualan
-        FROM 
-          penjualan p
-        INNER JOIN barang b ON p.id_barang = b.id_barang
-        GROUP BY 
-          p.id_barang, b.nama_barang
-        ORDER BY 
-          total_penjualan DESC;`);
+          const result = await db.query(`
+            SELECT 
+              p.id_barang, 
+              b.nama_barang,
+              SUM(p.jumlah) AS total_penjualan
+            FROM 
+              penjualan p
+            INNER JOIN barang b ON p.id_barang = b.id_barang
+            GROUP BY 
+              p.id_barang, b.nama_barang
+            ORDER BY 
+              total_penjualan DESC;
+            `)
 
         res.status(200).json({
           success: true,
-          msg: result.rows
+          msg: result[0]
         });
       } catch (error) {
         console.log(error)
@@ -94,9 +92,7 @@ export const laporanTerlaris = async (req,res) => {
 export const laporanMenguntungkan = async (req,res) => {
   try {
 
-    //SELECT "penjualan"."id_barang", sum("jumlah") AS "total_terjual", "barang"."id_barang" AS "barang.id_barang", "barang"."nama_barang" AS "barang.nama_barang" FROM "penjualan" AS "penjualan" LEFT OUTER JOIN "barang" AS "barang" ON "penjualan"."id_barang" = "barang"."id_barang" GROUP BY "id_barang" ORDER BY total_terjual DESC LIMIT 5;
-
-      const result =  await client.query(`
+      const result =  await db.query(`
         SELECT
             b.nama_barang,
             SUM(p.jumlah) AS QTY,
@@ -111,11 +107,11 @@ export const laporanMenguntungkan = async (req,res) => {
         ORDER BY
             Keuntungan DESC
         LIMIT 5;
-`);
+        `);
 
       res.status(200).json({
         success: true,
-        msg: result.rows
+        msg: result[0]
       });
     } catch (error) {
       console.log(error)
@@ -128,9 +124,7 @@ export const laporanMenguntungkan = async (req,res) => {
 export const laporanPenjualanYangMenguntungkan = async (req,res) => {
   try {
 
-    //SELECT "penjualan"."id_barang", sum("jumlah") AS "total_terjual", "barang"."id_barang" AS "barang.id_barang", "barang"."nama_barang" AS "barang.nama_barang" FROM "penjualan" AS "penjualan" LEFT OUTER JOIN "barang" AS "barang" ON "penjualan"."id_barang" = "barang"."id_barang" GROUP BY "id_barang" ORDER BY total_terjual DESC LIMIT 5;
-
-      const result =  await client.query(`
+      const result =  await db.query(`
       SELECT
           p.id_penjualan,
           p.tanggal_penjualan,
@@ -153,7 +147,7 @@ export const laporanPenjualanYangMenguntungkan = async (req,res) => {
 
       res.status(200).json({
         success: true,
-        msg: result.rows
+        msg: result[0]
       });
     } catch (error) {
       console.log(error)
