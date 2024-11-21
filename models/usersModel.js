@@ -10,9 +10,6 @@ const Users = db.define('users', {
     password: {
         type: DataTypes.CHAR(60),
         allowNull: false,
-    },
-    token: {
-        type: DataTypes.TEXT(90),
     }
 },{
     timestamps: false,
