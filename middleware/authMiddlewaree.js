@@ -7,7 +7,8 @@ export const authMiddleware = async (req, res, next) => {
     let token = req.get('Authorization');
     if (!token) {
         res.status(401).json({
-            errors: "Unauthorized"
+            success: false,
+            msg: "Unauthorized"
         }).end();
     } else {
 
@@ -15,7 +16,9 @@ export const authMiddleware = async (req, res, next) => {
 
         jwt.verify(token, secret, (err) => {
             if (err) {
-                res.status(403).json({ errors: 'Invalid token' }).end();
+                res.status(403).json({
+                    success: false,
+                    msg: 'Invalid token' }).end();
                 return;
             } else {
                 next();
